@@ -1,27 +1,42 @@
-# TesteFarmaPonte
+# Teste Proposto – Farma Ponte
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.5.
+Montar um simples site, usando qualquer tecnologia baseada em HTML, CSS e JS, podendo ser complementada por bibliotecas ou frameworks como bootstrap, tailwind, angular, jquery, etc. <br>
 
-## Development server
+Tabelas: cadastro de clientes:
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Código,
 
-## Code scaffolding
+Nome,
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Telefone,
 
-## Build
+e-mail,
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Grupo (código do grupo de cadastro de grupos)
 
-## Running unit tests
+cadastro de grupos:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+código,
 
-## Running end-to-end tests
+descrição
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Funcionalidade
+ O site deverá ser composto por 3 telas:
 
-## Further help
+· Tela principal: Trazer lista dos registros de clientes cadastrados com opção de pesquisa e botões para incluir ou alterar e excluir um registro selecionado
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+· Tela de adição / manutenção Clientes: Tela modal para inserção ou alteração dos dados do registro selecionado ou novo, no caso de inserção. Deve apresentar a lista de grupos para ser escolhido no momento do cadastro do cliente.
+
+· Tela de adição / manutenção Grupos: Tela modal para inserção ou alteração dos dados do registro selecionado ou novo, no caso de inserção.
+
+· Tela de resumo:
+
+Apresentar na tela:
+
+o Quantidade de clientes cadastrados por grupo
+
+o Quantidade de clientes e de grupos cadastrados
+
+o Resumo de grupos sem clientes cadastrados
+
+· Lista de clientes por grupo: Permitir especificar um grupo e listar os clientes
