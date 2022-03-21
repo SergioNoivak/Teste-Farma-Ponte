@@ -1,16 +1,17 @@
+import { Grupo } from './../../model/Grupo';
+import { GruposService } from './../services/grupos.service';
+import { Component, OnInit } from '@angular/core';
 import { ClientesService } from './../services/clientes.service';
 import { ThisReceiver } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Cliente } from '../../model/Cliente';
-
 @Component({
-  selector: 'app-listagem-clientes',
-  templateUrl: './listagem-clientes.component.html',
-  styleUrls: ['./listagem-clientes.component.scss'],
+  selector: 'app-listagem-grupos',
+  templateUrl: './listagem-grupos.component.html',
+  styleUrls: ['./listagem-grupos.component.scss']
 })
-export class ListagemClientesComponent implements OnInit {
-  clientes: Array<Cliente> = [];
+export class ListagemGruposComponent implements OnInit {
+  grupos: Array<Grupo> = [];
   formularioEdicao = this.formBuilder.group({
     nome: '',
     telefone: '',
@@ -20,7 +21,7 @@ export class ListagemClientesComponent implements OnInit {
   selecionado: any = undefined;
   indexSelecionado: number = -1;
 
-  listagemAtual: Array<Cliente> = [];
+  listagemAtual: Array<Grupo> = [];
   maximoPaginas = 0;
   mostrarBotaoEditar = false;
   quantidadePorPagina: number = 10;
@@ -30,7 +31,7 @@ export class ListagemClientesComponent implements OnInit {
   exibirPaginacao:boolean = true;
   onSubmitFormularioEdicao() {
     console.log(this.formularioEdicao.value)
-    this.clientes[this.indexSelecionado] = new Cliente(this.clientes[this.indexSelecionado].identificador,
+    this.grupos[this.indexSelecionado] = new Cliente(this.grupos[this.indexSelecionado].identificador,
       this.formularioEdicao.value.nome,this.formularioEdicao.value.telefone,this.formularioEdicao.value.email,this.formularioEdicao.value.grupo,false)
       this.decidirListagemAtual();
       this.mostrarBotaoEditar = false
@@ -47,7 +48,7 @@ export class ListagemClientesComponent implements OnInit {
     }
   }
   ajustarFocoCampoPesquisa() {
-    this.listagemAtual = this.clientes;
+    this.listagemAtual = this.grupos;
   }
   mudadoPagina(valor: any) {
     this.quantidadePorPagina = parseInt(valor.value);
@@ -58,10 +59,10 @@ export class ListagemClientesComponent implements OnInit {
     this.mostrarBotaoEditar = false;
     let selecionados: number = 0;
     this.mostrarBotoesAdicionarEditar = true;
-    for (let index = 0; index < this.clientes.length; index++) {
-      if (this.clientes[index].selecionado) selecionados++;
+    for (let index = 0; index < this.grupos.length; index++) {
+      if (this.grupos[index].selecionado) selecionados++;
       if (selecionados == 1) {
-        this.selecionado = this.clientes[index];
+        this.selecionado = this.grupos[index];
         this.indexSelecionado = index;
         this.mostrarBotaoEditar = true;
       } else {
@@ -75,7 +76,7 @@ export class ListagemClientesComponent implements OnInit {
   }
 
   excluir() {
-    this.clientes = this.clientes.filter(
+    this.grupos = this.grupos.filter(
       (cliente) => cliente.selecionado == false
     );
     this.decidirListagemAtual();
@@ -101,14 +102,14 @@ export class ListagemClientesComponent implements OnInit {
   }
 
   getMaximoPaginas() {
-    return Math.ceil(this.clientes.length / this.quantidadePorPagina);
+    return Math.ceil(this.grupos.length / this.quantidadePorPagina);
   }
 
   decidirListagemAtual() {
     this.maximoPaginas = Math.ceil(
-      this.clientes.length / this.quantidadePorPagina
+      this.grupos.length / this.quantidadePorPagina
     );
-    this.listagemAtual = this.clientes.slice(
+    this.listagemAtual = this.grupos.slice(
       0 + this.quantidadePorPagina * (parseInt(this.paginaAtual) - 1),
       this.quantidadePorPagina * (parseInt(this.paginaAtual) - 1) +
         this.quantidadePorPagina
@@ -116,7 +117,7 @@ export class ListagemClientesComponent implements OnInit {
   }
 
   procurar() {
-    this.listagemAtual = this.clientes.filter((cliente) => {
+    this.listagemAtual = this.grupos.filter((cliente) => {
       return cliente.nome.search(new RegExp(this.palavraChave.toString()));
     });
   }
@@ -124,10 +125,10 @@ export class ListagemClientesComponent implements OnInit {
 
   getUnicoSelecionado(): any {
     let i:number = -1;
-    for (let index = 0; index < this.clientes.length; index++) {
-      if (this.clientes[index].selecionado){
+    for (let index = 0; index < this.grupos.length; index++) {
+      if (this.grupos[index].selecionado){
         i=index;
-        return {"selecionado":this.clientes[index],"i":i};
+        return {"selecionado":this.grupos[index],"i":i};
       }
     }
     return {"selecionado":undefined,"i":-1};
@@ -150,12 +151,13 @@ export class ListagemClientesComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private clientesService: ClientesService
+    private gruposService: GruposService
   ) {
-    this.clientes = clientesService.getAllClientes();
+    this.grupos = gruposService.getAllGrupos();
     this.decidirListagemAtual();
     console.log(this.listagemAtual);
   }
 
   ngOnInit(): void {}
+
 }

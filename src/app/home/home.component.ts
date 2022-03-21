@@ -8,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   constructor() { }
-
+  listagemAtual = 'clientes'
+  mudadoListagem(event:any){
+      this.listagemAtual = event.item
+  }
   ngOnInit(): void {
   }
 

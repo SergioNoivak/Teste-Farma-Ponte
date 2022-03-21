@@ -228,15 +228,12 @@
         </div>
       </form>
     </div>
+    <div class="table-responsive">
     <table class="table table-hover">
       <thead>
-        <tr>
+        <tr class="text-center">
           <th scope="col"></th>
-          <th scope="col">Código</th>
-          <th scope="col">Nome</th>
-          <th scope="col">Telefone</th>
-          <th scope="col">E-mail</th>
-          <th scope="col">Grupo</th>
+          <th scope="col" style="display: flex; justify-content: center; align-items: center !important" >Nome</th>
         </tr>
       </thead>
       <tbody>
@@ -252,15 +249,11 @@
             />
           </td>
 
-          <th scope="row">
-            {{ item.identificador }}
-          </th>
-          <td>{{ item.nome }}</td>
-          <td>{{ item.telefone }}</td>
-          <td>{{ item.email }}</td>
-          <td>{{ item.grupo }}</td>
+
+          <td style="display: flex; justify-content: center; align-items: center !important"> {{ item.nome }}</td>
         </tr>
       </tbody>
     </table>
+  </div>
   </div>
 </div>

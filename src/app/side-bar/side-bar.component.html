@@ -21,20 +21,20 @@ style="
           border-left-color: red;
           border-left-width: 2px;
         "
+        (click)="mudadoItem('clientes')"
       >
         <svg class="bi me-2" width="16" height="16">
           <use xlink:href="#home"></use>
         </svg>
-        <i class="fa fa-home"></i>
-        Tela Principal
+        <i class="fa fa-user"></i>        Clientes
       </a>
     </li>
     <li>
-      <a href="#" class="nav-link link-dark">
+      <a href="#" class="nav-link link-dark" (click)="mudadoItem('grupos')" >
         <svg class="bi me-2" width="16" height="16">
           <use xlink:href="#speedometer2"></use>
         </svg>
-        <i class="fa fa-list"></i>            Tela de Resumo
+        <i class="fa fa-users"></i>            Grupos
       </a>
     </li>
 

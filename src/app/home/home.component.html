@@ -1,1 +1,10 @@
-<p>home works!</p>
+<app-nav-bar></app-nav-bar>
+<div class="d-flex flex-row">
+  <app-side-bar (mudadoListagem)="mudadoListagem($event)"></app-side-bar>
+
+  <div [ngSwitch]="listagemAtual">
+    <app-listagem-clientes *ngSwitchCase="'clientes'"></app-listagem-clientes>
+    <app-listagem-grupos *ngSwitchCase="'grupos'"></app-listagem-grupos>
+
+  </div>
+</div>
