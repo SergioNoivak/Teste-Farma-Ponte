@@ -25,7 +25,7 @@ new Cliente(
   'Altamira Gonçalves',
   '+55064981222112',
   'altamira@gmail.com',
-  '1',
+  '2',
 false   ),
 
 new Cliente(
@@ -51,7 +51,7 @@ new Cliente(
   'Arnaldo Antunes',
   '+55064981222112',
   'rrusso@gmail.com',
-  '1',
+  '2',
 false   ),
 new Cliente(
   '7',
@@ -98,7 +98,7 @@ new Cliente(
   'Andressa Suita',
   '+55064981222112',
   'aads@hotmail.com',
-  '1',
+  '2',
 false   ),
 new Cliente(
   '13',
@@ -144,7 +144,7 @@ false   ),new Cliente(
   'Cerlindo Cruz',
   '+55064981222112',
   'acruz@hotmail.com',
-  '1',
+  '2',
 false   ),new Cliente(
   '20',
   'Derlindo Cruz',
@@ -163,7 +163,7 @@ new Cliente(
   'Marisa Monte',
   '+55064981222112',
   'beijaeu@hotmail.com',
-  '1',
+  '2',
 false   ),
   ];
   constructor() { }

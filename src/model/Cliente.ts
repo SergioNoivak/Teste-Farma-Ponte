@@ -1,12 +1,12 @@
 export class Cliente {
-  public identificador:String;
-  public nome: String;
-  public telefone: String;
-  public email: String;
-  public grupo: String;
+  public identificador:string;
+  public nome: string;
+  public telefone: string;
+  public email: string;
+  public grupo: string;
   public selecionado: boolean;
 
-  constructor(identificador:String,nome: String, telefone: String, email: String, grupo: String,selecionado:boolean) {
+  constructor(identificador:string,nome: string, telefone: string, email: string, grupo: string,selecionado:boolean) {
     this.nome = nome;
     this.telefone = telefone;
     this.email = email;
