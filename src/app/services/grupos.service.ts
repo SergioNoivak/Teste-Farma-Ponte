@@ -21,6 +21,9 @@ new Grupo(
 
 
   }
+  getNumeroGruposCadastrados(){
+    return this.grupos.length;
+  }
 
   remove(i:number){
     this.grupos = this.grupos.splice(i,1)

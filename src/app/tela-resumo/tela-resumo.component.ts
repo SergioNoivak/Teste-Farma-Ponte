@@ -1,3 +1,5 @@
+import { GruposService } from './../services/grupos.service';
+import { ClientesService } from './../services/clientes.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TelaResumoComponent implements OnInit {
 
-  constructor() { }
+  numeroClientesCadastrados:number=-1;
+  numeroGruposCadastrados:number=-1;
+  constructor(private clientesService:ClientesService,private gruposService:GruposService) {
+    this.numeroClientesCadastrados = this.clientesService.getNumeroClientesCadastrados()
+    this.numeroGruposCadastrados = this.gruposService.getNumeroGruposCadastrados()
+
+   }
 
   ngOnInit(): void {
   }

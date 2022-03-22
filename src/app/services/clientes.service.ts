@@ -181,5 +181,8 @@ false   ),
     cliente.identificador = this.clientes.length+""
     this.clientes.push(cliente);
   }
+  getNumeroClientesCadastrados(){
+    return this.clientes.length;
+  }
 
 }
