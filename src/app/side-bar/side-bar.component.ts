@@ -9,7 +9,9 @@ export class SideBarComponent implements OnInit {
 
   @Output()
   @Output() mudadoListagem = new EventEmitter<any>();
+  itemAtual:string = 'clientes'
   mudadoItem(novoItem:string){
+      this.itemAtual = novoItem
       this.mudadoListagem.emit({"item":novoItem});
   }
   constructor() { }

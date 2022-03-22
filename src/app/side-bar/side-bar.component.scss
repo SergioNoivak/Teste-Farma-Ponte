@@ -15,3 +15,12 @@ color: red;
 a{
 color:var(--primary-color);
 }
+
+
+.borda-selecionada{
+
+  border-radius: 0px;
+  border-left-style: solid;
+  border-left-color: red;
+  border-left-width: 2px;
+}
