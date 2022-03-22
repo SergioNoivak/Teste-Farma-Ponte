@@ -14,9 +14,13 @@ export class ListagemGruposComponent implements OnInit {
   grupos: Array<Grupo> = [];
   formularioEdicao = this.formBuilder.group({
     nome: '',
-    telefone: '',
-    email: '',
-    grupo: '',
+    identificador:''
+
+  });
+  formularioCriacao = this.formBuilder.group({
+    nome: '',
+    identificador:''
+
   });
   selecionado: any = undefined;
   indexSelecionado: number = -1;
@@ -31,8 +35,9 @@ export class ListagemGruposComponent implements OnInit {
   exibirPaginacao:boolean = true;
   onSubmitFormularioEdicao() {
     console.log(this.formularioEdicao.value)
-    this.grupos[this.indexSelecionado] = new Cliente(this.grupos[this.indexSelecionado].identificador,
-      this.formularioEdicao.value.nome,this.formularioEdicao.value.telefone,this.formularioEdicao.value.email,this.formularioEdicao.value.grupo,false)
+    this.grupos[this.indexSelecionado] = new Grupo(this.grupos[this.indexSelecionado].identificador,
+      this.formularioEdicao.value.nome,false)
+
       this.decidirListagemAtual();
       this.mostrarBotaoEditar = false
 
@@ -79,6 +84,7 @@ export class ListagemGruposComponent implements OnInit {
     this.grupos = this.grupos.filter(
       (cliente) => cliente.selecionado == false
     );
+    this.gruposService.remove(this.indexSelecionado)
     this.decidirListagemAtual();
   }
 
@@ -122,6 +128,7 @@ export class ListagemGruposComponent implements OnInit {
     });
   }
   displayStyle = 'none';
+  displayStyleCriacao = 'none';
 
   getUnicoSelecionado(): any {
     let i:number = -1;
@@ -139,9 +146,7 @@ export class ListagemGruposComponent implements OnInit {
     this.indexSelecionado = unico.i;
     this.formularioEdicao.setValue({
       nome: this.selecionado.nome,
-      telefone: this.selecionado.telefone,
-      email: this.selecionado.email,
-      grupo: this.selecionado.grupo,
+      identificador:this.selecionado.identificador
     });
     this.displayStyle = 'block';
   }
@@ -149,6 +154,26 @@ export class ListagemGruposComponent implements OnInit {
     this.displayStyle = 'none';
   }
 
+
+  openPopupCriacao() {
+
+    this.formularioCriacao.setValue({
+      nome: "",
+      identificador: "",
+
+    });
+    this.displayStyleCriacao = 'block';
+  }
+  closePopupCriacao() {
+    this.displayStyleCriacao = 'none';
+  }
+  adicionar(){
+    let g:Grupo = new Grupo('0',this.formularioCriacao.value.nome,false)
+    this.gruposService.addGrupo(g);
+    this.decidirListagemAtual();
+
+
+  }
   constructor(
     private formBuilder: FormBuilder,
     private gruposService: GruposService

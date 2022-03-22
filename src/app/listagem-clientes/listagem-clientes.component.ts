@@ -1,3 +1,5 @@
+import { Grupo } from './../../model/Grupo';
+import { GruposService } from './../services/grupos.service';
 import { ClientesService } from './../services/clientes.service';
 import { ThisReceiver } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
@@ -11,7 +13,14 @@ import { Cliente } from '../../model/Cliente';
 })
 export class ListagemClientesComponent implements OnInit {
   clientes: Array<Cliente> = [];
+  grupos: Array<Grupo> = [];
   formularioEdicao = this.formBuilder.group({
+    nome: '',
+    telefone: '',
+    email: '',
+    grupo: '',
+  });
+  formularioCriacao = this.formBuilder.group({
     nome: '',
     telefone: '',
     email: '',
@@ -19,7 +28,7 @@ export class ListagemClientesComponent implements OnInit {
   });
   selecionado: any = undefined;
   indexSelecionado: number = -1;
-
+  dicionarioGrupos:any = {};
   listagemAtual: Array<Cliente> = [];
   maximoPaginas = 0;
   mostrarBotaoEditar = false;
@@ -73,6 +82,13 @@ export class ListagemClientesComponent implements OnInit {
       }
     }
   }
+  adicionar(){
+    let c:Cliente = new Cliente('0',this.formularioCriacao.value.nome,this.formularioCriacao.value.telefone,this.formularioCriacao.value.email,this.formularioCriacao.value.grupo,false)
+    this.clientesService.addCliente(c);
+    this.decidirListagemAtual();
+
+
+  }
 
   excluir() {
     this.clientes = this.clientes.filter(
@@ -121,6 +137,7 @@ export class ListagemClientesComponent implements OnInit {
     });
   }
   displayStyle = 'none';
+  displayStyleCriacao = 'none';
 
   getUnicoSelecionado(): any {
     let i:number = -1;
@@ -148,11 +165,28 @@ export class ListagemClientesComponent implements OnInit {
     this.displayStyle = 'none';
   }
 
+  openPopupCriacao() {
+
+    this.formularioCriacao.setValue({
+      nome: "",
+      telefone: "",
+      email: "",
+      grupo: "",
+    });
+    this.displayStyleCriacao = 'block';
+  }
+  closePopupCriacao() {
+    this.displayStyleCriacao = 'none';
+  }
+
   constructor(
     private formBuilder: FormBuilder,
-    private clientesService: ClientesService
+    private clientesService: ClientesService,
+    private gruposService: GruposService
   ) {
     this.clientes = clientesService.getAllClientes();
+    this.grupos = gruposService.getAllGrupos();
+    this.dicionarioGrupos = gruposService.getAllGruposDicionario();
     this.decidirListagemAtual();
     console.log(this.listagemAtual);
   }

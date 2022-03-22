@@ -46,13 +46,11 @@
             />
           </div>
           <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Grupo</label>
-            <input
-              formControlName="grupo"
-              type="text"
-              class="form-control"
+            <label for="exampleInputPassword1" class="form-label">Grupo</label><br>
+            <select class="custom-select custom-select-sm">
+              <option *ngFor="let grupo of grupos" >{{grupo.nome}}</option>
 
-            />
+            </select>
           </div>
         </div>
         <div class="modal-footer">
@@ -75,6 +73,84 @@
     </div>
   </form>
 </div>
+
+
+<div
+  class="modal"
+  tabindex="-1"
+  role="dialog"
+  [ngStyle]="{
+    display: displayStyleCriacao,
+    'background-color':
+      this.displayStyleCriacao == 'block' ? 'rgba(1,1,1,0.5)' : 'rgb(0,0,0)'
+  }"
+>
+  <form [formGroup]="formularioCriacao" (ngSubmit)="adicionar()" >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Adicionar Cliente</h4>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Nome</label>
+            <input
+              formControlName="nome"
+              type="text"
+              class="form-control"
+
+              aria-describedby="emailHelp"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Email</label>
+            <input
+              formControlName="email"
+              type="email"
+              class="form-control"
+
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label"
+              >Telefone</label
+            >
+            <input
+              formControlName="telefone"
+              type="texte"
+              class="form-control"
+
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Grupo</label><br>
+            <select class="custom-select custom-select-sm" formControlName="grupo">
+              <option *ngFor="let grupo of grupos" [value]="grupo.identificador" >{{grupo.nome}}</option>
+
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="closePopupCriacao()">
+            Cancelar
+          </button>
+          <button
+            type="submit"
+            class="btn btn-secondary"
+            style="
+              background-color: var(--primary-color-alpha);
+              margin-left: 10px;
+            "
+            (click)="closePopupCriacao()"
+          >
+            Salvar
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
 
 <div class="col" style="margin-left: 20px; min-width: 1000px">
   <div class="px-5 pt-3">
@@ -113,6 +189,8 @@
 
                   <button
                     *ngIf="mostrarBotoesAdicionarEditar"
+                    (click)="openPopupCriacao()"
+
                     type="button"
                     class="btn btn-secondary"
                     style="
@@ -258,7 +336,7 @@
           <td>{{ item.nome }}</td>
           <td>{{ item.telefone }}</td>
           <td>{{ item.email }}</td>
-          <td>{{ item.grupo }}</td>
+          <td *ngIf="dicionarioGrupos!=undefined && dicionarioGrupos[item.grupo]!=undefined">{{ dicionarioGrupos[item.grupo].nome }}</td>
         </tr>
       </tbody>
     </table>

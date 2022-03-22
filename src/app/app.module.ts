@@ -13,6 +13,7 @@ import { ModalEditarClienteComponent } from './modal-editar-cliente/modal-editar
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ListagemGruposComponent } from './listagem-grupos/listagem-grupos.component';
+import { TelaResumoComponent } from './tela-resumo/tela-resumo.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ListagemGruposComponent } from './listagem-grupos/listagem-grupos.compo
     HomeComponent,
     ListagemClientesComponent,
     ModalEditarClienteComponent,
-    ListagemGruposComponent
+    ListagemGruposComponent,
+    TelaResumoComponent
   ],
   imports: [
     BrowserModule,
